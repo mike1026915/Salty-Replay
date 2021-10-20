@@ -1,0 +1,10 @@
+{
+    "name": "Salty Replay",
+    "description": "Replay your youtube video in a period",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": ["storage", "activeTab", "scripting"]
+}
