@@ -4,8 +4,13 @@ const set = document.getElementById('set');
 set.addEventListener('click', async () => {
     let [ tab ] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    const start = document.getElementById('start').value;
-    const end = document.getElementById('end').value;
+    const starMin = document.getElementById('start-min').value;
+    const startSec = document.getElementById('start-sec').value;
+    const endMin = document.getElementById('end-min').value;
+    const endSec = document.getElementById('end-sec').value;
+
+    const start = parseInt(starMin, 10) * 60 + parseInt(startSec);
+    const end = parseInt(endMin, 10) * 60 + parseInt(endSec);
 
     chrome.storage.sync.set({ value: [start, end] });
 
@@ -28,8 +33,8 @@ function setPeriodReplay(start, end) {
         videoElement.addEventListener('timeupdate', (event) => {
             const element = event.target;
 
-            if (element.currentTime >= Number(end)) {
-                element.currentTime = Number(start);
+            if (element.currentTime >= parseInt(end, 10)) {
+                element.currentTime = parseInt(start, 10);
                 element.play();
             }
         }, false);
